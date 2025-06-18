@@ -30,4 +30,48 @@
 
 - Adeept_Moter_For_ESP32.h 라이브러리를 사용하여 두 개의 모터(M1, M2)를 **앞/뒤 회전 → 정지**하는 동작 반복 테스트<br>
 (참고: 해당 라이브러리는 별도로 파일 첨부)<br>
+```
+/**********************************************************************
+  Description : Adjust the servo to the middle position.
+  Auther      : www.adeept.com
+  Modification: 2023/05/31
+**********************************************************************/
+#include "Adeept_Motor_For_ESP32.h"
+
+void setup()  // Execute only once.
+{
+  PCA9685_Setup();       //Initializes the chip that controls the motor
+  
+  // Motor(MotorID, Direction, MotorSpeed)
+  // MotorID: 1-4 (M1, M2, M3, M4)
+  // Direction: 1 or -1 (1:forward, -1:backward)
+  // MotorSpeed: 0-100 (0:stop)
+  /*
+  Motor(1, 1, 50); // The motor turns for 3 seconds.
+  Motor(2, -1, 50); // The motor turns for 3 seconds.
+  delay(1000);      // delay 3s.
+  Motor(1, 1, 0);   //stop
+  Motor(2, -1, 0);
+  delay(1000);
+  */
+}
+
+void loop()
+{
+  Motor(1, 1, 50); // The motor turns for 3 seconds.
+  Motor(2, -1, 50); // The motor turns for 3 seconds.
+  delay(1000);      // delay 3s.
+  Motor(1, 1, 0);   //stop
+  Motor(2, -1, 0);
+  delay(1000);
+
+  Motor(1, -1, 50); // The motor turns for 3 seconds.
+  Motor(2, 1, 50); // The motor turns for 3 seconds.
+  delay(1000);      // delay 3s.
+  Motor(1, -1, 0);   //stop
+  Motor(2, 1, 0);
+  delay(1000);
+}
+
+```
 ![동작 반복 테스트](https://github.com/haeun0908/Project_Daejeon/blob/main/images/%EB%8F%99%EC%9E%91%20%EB%B0%98%EB%B3%B5%20%ED%85%8C%EC%8A%A4%ED%8A%B8.gif)
